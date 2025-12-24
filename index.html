@@ -1,0 +1,2759 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mansoura Oussama - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #2d3748;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      background-attachment: fixed;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1.5rem 0;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav.scrolled {
+      padding: 1rem 0;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a202c;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-logo:hover {
+      color: #4f46e5;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    .nav-link {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4f46e5;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #4f46e5;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .nav-toggle span {
+      width: 25px;
+      height: 2px;
+      background: #1a202c;
+      transition: all 0.3s ease;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      color: #000000;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.03) 100%);
+      border-radius: 50%;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: linear-gradient(225deg, transparent 0%, rgba(0, 0, 0, 0.02) 100%);
+      border-radius: 50%;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(30px, -30px) rotate(5deg);
+      }
+      50% {
+        transform: translate(-20px, 20px) rotate(-5deg);
+      }
+      75% {
+        transform: translate(20px, 10px) rotate(3deg);
+      }
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero-image-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInUp 1s ease 0.3s both;
+    }
+
+    .hero-photo {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      transition: all 0.6s ease;
+    }
+
+    .hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #000000, transparent, #000000);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      animation: rotate 8s linear infinite;
+    }
+
+    .hero-photo:hover::before {
+      opacity: 0.1;
+    }
+
+    .hero-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease 0.2s both;
+      letter-spacing: -2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 4px;
+      background: #000000;
+      animation: expandWidth 1s ease 1.2s forwards;
+    }
+
+    @keyframes expandWidth {
+      to {
+        width: 100px;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease 0.4s both;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      animation: fadeInUp 1s ease 0.8s both;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #1a1a1a;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #000000;
+      border: 2px solid #000000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: #000000;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #1a202c;
+      position: relative;
+      padding-bottom: 1.5rem;
+      letter-spacing: -1px;
+      display: inline-block;
+      background: linear-gradient(180deg, transparent 60%, #FFD300 60%);
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-heading::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: #000000;
+      border-radius: 0;
+      animation: expandLine 1s ease forwards;
+    }
+
+    @keyframes expandLine {
+      to {
+        width: 80px;
+      }
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #4a5568;
+      max-width: 700px;
+      margin: -1.5rem auto 0 auto;
+      line-height: 1.6;
+      padding-bottom: 2rem;
+    }
+
+    /* About Section */
+    .about-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .about-content {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #4a5568;
+      margin-bottom: 3rem;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .personal-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .info-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .info-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-color: #FFD300;
+    }
+
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: #FFD300;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .info-content {
+      flex: 1;
+    }
+
+    .info-label {
+      font-size: 0.85rem;
+      color: #718096;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.2rem;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      color: #1a202c;
+      font-weight: 500;
+      word-break: break-word;
+    }
+
+    /* Skills Section */
+    .skills-list {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .skill-item {
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .skill-item:nth-child(1) { animation-delay: 0.1s; }
+    .skill-item:nth-child(2) { animation-delay: 0.2s; }
+    .skill-item:nth-child(3) { animation-delay: 0.3s; }
+    .skill-item:nth-child(4) { animation-delay: 0.4s; }
+    .skill-item:nth-child(5) { animation-delay: 0.5s; }
+    .skill-item:nth-child(6) { animation-delay: 0.6s; }
+    .skill-item:nth-child(7) { animation-delay: 0.7s; }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a202c;
+    }
+
+    .skill-percentage {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #000000;
+      background: #FFD300;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    .skill-bar-container {
+      width: 100%;
+      height: 12px;
+      background: #f0f0f0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .skill-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #000000 0%, #333333 100%);
+      border-radius: 20px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    .skill-item.animate .skill-bar {
+      width: var(--skill-width);
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .experience-item {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-left: 5px solid #FFD300;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 211, 0, 0.05));
+      transition: right 0.6s ease;
+    }
+
+    .experience-item:hover::before {
+      right: 0;
+    }
+
+    .experience-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .experience-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-period {
+      font-size: 0.9rem;
+      color: #000000;
+      font-weight: 600;
+      background: #FFD300;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .experience-description {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #4a5568;
+    }
+
+    .experience-description ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.8rem;
+    }
+
+    .experience-description li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.6rem;
+    }
+
+    .experience-description li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #FFD300;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #FFD300;
+      transform: scaleX(0);
+      transition: transform 0.6s ease;
+    }
+
+    .stat-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      color: #4a5568;
+      font-weight: 500;
+    }
+
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: linear-gradient(180deg, #FFD300 0%, #FFC000 100%);
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+
+    .service-card:hover::before {
+      height: 100%;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at center, rgba(255, 211, 0, 0.08), transparent 70%);
+      border-radius: 50%;
+      transform: translate(40px, 40px);
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover::after {
+      transform: translate(30px, 30px) scale(1.2);
+    }
+
+    .service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 211, 0, 0.3);
+    }
+
+    .service-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #FFD300;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      opacity: 0.3;
+      transition: opacity 0.4s ease;
+    }
+
+    .service-card:hover .service-number {
+      opacity: 0.6;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 1.5rem;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) translateX(5px);
+    }
+
+    .service-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .service-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .service-features li {
+      font-size: 0.9rem;
+      color: #718096;
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .service-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #FFD300;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #FFD300 0%, #FFC000 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s ease;
+    }
+
+    .pricing-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid #FFD300;
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-10px) scale(1.07);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: #FFD300;
+      color: #000000;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 2rem;
+      line-height: 1;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .pricing-features li {
+      padding: 0.8rem 0;
+      color: #4a5568;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-button {
+      width: 100%;
+      padding: 1.2rem;
+      background: #000000;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .pricing-button:hover {
+      background: #1a1a1a;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .pricing-details {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.4s ease;
+      padding: 0;
+    }
+
+    .pricing-details.active {
+      max-height: 1000px;
+      opacity: 1;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Projects Section */
+    .projects-section {
+      background: #f7fafc;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      position: relative;
+      cursor: pointer;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 220px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 1.5rem;
+      background: white;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .project-description {
+      color: #4a5568;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* Modal Styles */
+    .project-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .project-modal.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .project-modal-content {
+      position: relative;
+      max-width: 95%;
+      max-height: 95%;
+      animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .project-modal-close {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-modal-close:hover {
+      transform: rotate(90deg);
+      background: #000000;
+    }
+
+    .project-modal-close svg {
+      width: 20px;
+      height: 20px;
+      stroke: #000000;
+      transition: stroke 0.3s ease;
+    }
+
+    .project-modal-close:hover svg {
+      stroke: white;
+    }
+
+    .project-modal-image {
+      max-width: 100%;
+      max-height: 95vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-modal-body {
+      display: none;
+    }
+
+    .project-modal-title {
+      display: none;
+    }
+
+    .project-modal-description {
+      display: none;
+    }
+
+    /* Testimonials Section */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.6) 100%);
+      transition: height 0.4s ease;
+      border-radius: 20px 0 0 20px;
+    }
+
+    .testimonial-card:hover::before {
+      height: 100%;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-quote {
+      font-size: 4rem;
+      color: #000000;
+      opacity: 0.1;
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #4a5568;
+      position: relative;
+      z-index: 1;
+      font-style: italic;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: #f7fafc;
+    }
+
+    .contact-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info-section {
+      background: white;
+      padding: 3rem;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 100px;
+    }
+
+    .contact-info-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 1rem;
+      background: linear-gradient(180deg, transparent 65%, #FFD300 65%);
+      display: inline-block;
+      padding: 0 0.5rem;
+    }
+
+    .contact-info-description {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #4a5568;
+      margin-bottom: 2rem;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-info-icon {
+      width: 45px;
+      height: 45px;
+      background: #FFD300;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-info-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .contact-info-content {
+      flex: 1;
+    }
+
+    .contact-info-label {
+      font-size: 0.85rem;
+      color: #718096;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-info-value {
+      font-size: 1rem;
+      color: #1a202c;
+      font-weight: 500;
+      word-break: break-word;
+    }
+
+    .contact-content {
+      max-width: 700px;
+    }
+
+    .contact-intro {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #4a5568;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 3rem;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      background: #ffffff;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #000000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-button {
+      width: 100%;
+      padding: 1.2rem;
+      background: #000000;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .form-button:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .form-button:hover {
+      background: #1a1a1a;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .form-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-button:disabled::before {
+      display: none;
+    }
+
+    /* Footer */
+    .footer {
+      background: #1a202c;
+      color: white;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .footer-column p,
+    .footer-column ul {
+      color: #cbd5e0;
+      line-height: 1.8;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-link {
+      color: #cbd5e0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #667eea;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      text-align: center;
+      color: #cbd5e0;
+    }
+
+    /* Success Message */
+    .success-message {
+      display: none;
+      background: #48bb78;
+      color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      text-align: center;
+      animation: slideIn 0.3s ease;
+      box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        gap: 1.5rem;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-photo {
+        width: 300px;
+        height: 300px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn {
+        text-align: center;
+      }
+
+      .section {
+        padding: 3rem 1.5rem;
+      }
+
+      .section-heading {
+        font-size: 2rem;
+      }
+
+      .personal-info,
+      .skills-grid,
+      .services-grid,
+      .projects-grid,
+      .testimonials-grid,
+      .stats-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact-info-section {
+        position: relative;
+        top: 0;
+      }
+
+      .contact-form {
+        padding: 2rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0 1rem;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .contact-form {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Navigation -->
+  <nav class="nav" id="nav">
+   <div class="nav-container"><a href="#hero" class="nav-logo">MO</a>
+    <div class="nav-toggle" id="navToggle"><span></span> <span></span> <span></span>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+     <li><a href="#about" class="nav-link">About</a></li>
+     <li><a href="#skills" class="nav-link">Skills</a></li>
+     <li><a href="#experience" class="nav-link">Experience</a></li>
+     <li><a href="#stats" class="nav-link">Stats</a></li>
+     <li><a href="#services" class="nav-link">Services</a></li>
+     <li><a href="#pricing" class="nav-link">Pricing</a></li>
+     <li><a href="#projects" class="nav-link">Projects</a></li>
+     <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+     <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+   </div>
+  </nav><!-- Hero Section -->
+  <section class="hero" id="hero">
+   <div class="hero-container">
+    <div class="hero-content">
+     <h1 class="hero-title" id="heroTitle">Mansoura Oussama</h1>
+     <p class="hero-subtitle" id="heroSubtitle">Multidisciplinary Designer &amp; Digital Strategist</p>
+     <p class="hero-description" id="heroDescription">I design brands, craft interfaces, and build digital experiences that blend creativity, clarity, and strategy. With a strong background in design, marketing, and scientific research, I create work that is visually sharp, user-focused, and built with intention.</p>
+     <div class="hero-cta"><a href="#projects" class="btn btn-primary" id="ctaPrimary">View My Work</a> <a href="#contact" class="btn btn-secondary" id="ctaSecondary">Contact Me</a>
+     </div>
+    </div>
+    <div class="hero-image-wrapper">
+     <div class="hero-photo"><img src="https://i.imgur.com/YeNcVEm.jpeg" alt="Mansoura Oussama">
+     </div>
+    </div>
+   </div>
+  </section><!-- About Section -->
+  <section class="section" id="about">
+   <div class="section-header">
+    <h2 class="section-heading" id="aboutHeading">About Me</h2>
+    <p class="section-subtitle">A multidisciplinary creative blending design, strategy, and research-driven thinking.</p>
+   </div>
+   <div class="about-wrapper">
+    <div class="about-content">
+     <p>I'm a multidisciplinary creative specializing in brand identity design, UI/UX design, social media strategy, and digital communication.</p>
+     <p>With 4+ years of hands-on experience, I've worked across social media design, branding, interface design, and marketing strategy for companies, events, and personal brands.</p>
+     <p>My scientific background as a pharmacist resident in medicinal chemistry adds a unique layer to my creative work: precision, research-driven thinking, structured problem-solving, and an analytical mindset.</p>
+     <p>I bring together creativity and strategy to deliver work that is visually strong, logically constructed, and aligned with business goals.</p>
+    </div>
+    <div class="personal-info">
+     <div class="info-item">
+      <div class="info-icon">
+       <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="#000000" stroke-width="2" /> <path d="M6 21C6 17.134 8.686 14 12 14C15.314 14 18 17.134 18 21" stroke="#000000" stroke-width="2" stroke-linecap="round" />
+       </svg>
+      </div>
+      <div class="info-content">
+       <div class="info-label">
+        Age
+       </div>
+       <div class="info-value">
+        29 Years
+       </div>
+      </div>
+     </div>
+     <div class="info-item">
+      <div class="info-icon">
+       <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="#000000" stroke-width="2" stroke-linejoin="round" />
+       </svg>
+      </div>
+      <div class="info-content">
+       <div class="info-label">
+        Freelance
+       </div>
+       <div class="info-value">
+        Available
+       </div>
+      </div>
+     </div>
+     <div class="info-item">
+      <div class="info-icon">
+       <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21C16.4183 21 20 17.4183 20 13C20 8.58172 16.4183 5 12 5C7.58172 5 4 8.58172 4 13C4 17.4183 7.58172 21 12 21Z" stroke="#000000" stroke-width="2" /> <path d="M12 9V13L15 15" stroke="#000000" stroke-width="2" stroke-linecap="round" /> <path d="M12 3V5" stroke="#000000" stroke-width="2" stroke-linecap="round" />
+       </svg>
+      </div>
+      <div class="info-content">
+       <div class="info-label">
+        Address
+       </div>
+       <div class="info-value">
+        Sidi Bel Abbes, Algeria
+       </div>
+      </div>
+     </div>
+     <div class="info-item">
+      <div class="info-icon">
+       <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" /> <path d="M3 7L12 13L21 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+       </svg>
+      </div>
+      <div class="info-content">
+       <div class="info-label">
+        Email
+       </div>
+       <div class="info-value">
+        Oussamamansoura1604@gmail.com
+       </div>
+      </div>
+     </div>
+     <div class="info-item">
+      <div class="info-icon">
+       <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92V19.92C22 20.49 21.54 20.95 20.97 20.92C10.05 20.36 3.62 13.94 3.06 3.03C3.03 2.45 3.48 2 4.06 2H7.06C7.59 2 8.04 2.42 8.07 2.94C8.18 4.51 8.47 6.03 8.93 7.47C9.04 7.8 8.97 8.17 8.74 8.43L7.09 10.51C8.51 13.36 10.64 15.49 13.49 16.91L15.57 15.26C15.84 15.03 16.21 14.96 16.53 15.07C17.97 15.53 19.49 15.82 21.06 15.93C21.58 15.96 22 16.41 22 16.92Z" stroke="#000000" stroke-width="2" />
+       </svg>
+      </div>
+      <div class="info-content">
+       <div class="info-label">
+        Phone
+       </div>
+       <div class="info-value">
+        +213 697 447 483
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Skills Section -->
+  <section class="section" id="skills">
+   <div class="section-header">
+    <h2 class="section-heading">Resume — Skills</h2>
+    <p class="section-subtitle">Core competencies built through years of hands-on experience and continuous learning.</p>
+   </div>
+   <div class="skills-list">
+    <div class="skill-item">
+     <div class="skill-header"><span class="skill-name">Branding &amp; Identity Design</span> <span class="skill-percentage">95%</span>
+     </div>
+     <div class="skill-bar-container">
+      <div class="skill-bar" style="--skill-width: 95%"></div>
+     </div>
+    </div>
+    <div class="skill-item">
+     <div class="skill-header"><span class="skill-name">UI/UX &amp; Interface Design</span> <span class="skill-percentage">90%</span>
+     </div>
+     <div class="skill-bar-container">
+      <div class="skill-bar" style="--skill-width: 90%"></div>
+     </div>
+    </div>
+    <div class="skill-item">
+     <div class="skill-header"><span class="skill-name">Social Media Design Systems</span> <span class="skill-percentage">92%</span>
+     </div>
+     <div class="skill-bar-container">
+      <div class="skill-bar" style="--skill-width: 92%"></div>
+     </div>
+    </div>
+    <div class="skill-item">
+     <div class="skill-header"><span class="skill-name">Creative Direction</span> <span class="skill-percentage">88%</span>
+     </div>
+     <div class="skill-bar-container">
+      <div class="skill-bar" style="--skill-width: 88%"></div>
+     </div>
+    </div>
+    <div class="skill-item">
+     <div class="skill-header"><span class="skill-name">Automation &amp; Workflows</span> <span class="skill-percentage">85%</span>
+     </div>
+     <div class="skill-bar-container">
+      <div class="skill-bar" style="--skill-width: 85%"></div>
+     </div>
+    </div>
+    <div class="skill-item">
+     <div class="skill-header"><span class="skill-name">Graphic Design</span> <span class="skill-percentage">93%</span>
+     </div>
+     <div class="skill-bar-container">
+      <div class="skill-bar" style="--skill-width: 93%"></div>
+     </div>
+    </div>
+    <div class="skill-item">
+     <div class="skill-header"><span class="skill-name">Research Writing</span> <span class="skill-percentage">90%</span>
+     </div>
+     <div class="skill-bar-container">
+      <div class="skill-bar" style="--skill-width: 90%"></div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Experience Section -->
+  <section class="section" id="experience">
+   <div class="section-header">
+    <h2 class="section-heading">Experience</h2>
+    <p class="section-subtitle">A journey through diverse roles that shaped my creative and strategic expertise.</p>
+   </div>
+   <div class="experience-timeline">
+    <div class="experience-item">
+     <h3 class="experience-title">Creative Designer &amp; Digital Strategy Consultant — Freelance</h3><span class="experience-period">2019 — Present</span>
+     <div class="experience-description">
+      <ul>
+       <li>Designed full brand identities for multiple industries</li>
+       <li>Created scalable visual systems for print &amp; digital</li>
+       <li>Built high-engagement social frameworks (10–15% ER)</li>
+       <li>Designed UI/UX screens for apps and landing pages</li>
+       <li>Built automations that save clients hours weekly</li>
+       <li>Provided creative and strategic direction</li>
+      </ul>
+     </div>
+    </div>
+    <div class="experience-item">
+     <h3 class="experience-title">Social Media Designer &amp; UI/UX Contributor — Allo Jibli</h3>
+     <div class="experience-description">
+      <ul>
+       <li>Built the company's full visual identity</li>
+       <li>Designed content for Sidi Bel Abbès, Oran &amp; Mostaganem</li>
+       <li>Improved app UX structure</li>
+       <li>Produced unified digital assets for all platforms</li>
+      </ul>
+     </div>
+    </div>
+    <div class="experience-item">
+     <h3 class="experience-title">Designer for Medical &amp; Corporate Events</h3>
+     <div class="experience-description">
+      <ul>
+       <li>Brochures, flyers, banners, scientific presentation templates</li>
+       <li>Full event identity systems for medical congresses</li>
+      </ul>
+     </div>
+    </div>
+    <div class="experience-item">
+     <h3 class="experience-title">Academic Instructor &amp; Thesis Co-Supervisor — Faculty of Medicine</h3>
+     <div class="experience-description">
+      <ul>
+       <li>Delivered courses in medicinal chemistry</li>
+       <li>Co-supervised a pharmacy thesis</li>
+       <li>Designed advanced educational material</li>
+      </ul>
+     </div>
+    </div>
+    <div class="experience-item">
+     <h3 class="experience-title">Pharmacy Resident — Medicinal Chemistry</h3>
+     <div class="experience-description">
+      <ul>
+       <li>Strong analytical and documentation background</li>
+       <li>Experience in synthesis, QC, and virtual screening</li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section><!-- Stats Section -->
+  <section class="section" id="stats">
+   <div class="section-header">
+    <h2 class="section-heading">Stats</h2>
+    <p class="section-subtitle">Numbers that reflect my commitment to quality and client satisfaction.</p>
+   </div>
+   <div class="stats-grid">
+    <div class="stat-card">
+     <div class="stat-number">
+      50+
+     </div>
+     <div class="stat-label">
+      Designs Completed
+     </div>
+    </div>
+    <div class="stat-card">
+     <div class="stat-number">
+      20+
+     </div>
+     <div class="stat-label">
+      Clients Served
+     </div>
+    </div>
+    <div class="stat-card">
+     <div class="stat-number">
+      4+
+     </div>
+     <div class="stat-label">
+      Years of Experience
+     </div>
+    </div>
+   </div>
+  </section><!-- Services Section -->
+  <section class="section" id="services">
+   <div class="section-header">
+    <h2 class="section-heading">Services Offered</h2>
+    <p class="section-subtitle">Comprehensive creative services tailored to elevate your brand and digital presence.</p>
+   </div>
+   <div class="services-grid">
+    <div class="service-card">
+     <div class="service-number">
+      01
+     </div>
+     <svg class="service-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#000000" stroke-width="1.5" /> <circle cx="12" cy="12" r="4" stroke="#000000" stroke-width="1.5" /> <line x1="12" y1="3" x2="12" y2="8" stroke="#000000" stroke-width="1.5" /> <line x1="12" y1="16" x2="12" y2="21" stroke="#000000" stroke-width="1.5" /> <line x1="3" y1="12" x2="8" y2="12" stroke="#000000" stroke-width="1.5" /> <line x1="16" y1="12" x2="21" y2="12" stroke="#000000" stroke-width="1.5" />
+     </svg>
+     <h3 class="service-title">Brand Identity Design</h3>
+     <p class="service-description">Complete visual identity systems including logo design, color palettes, typography, and comprehensive brand guidelines that ensure consistency across all touchpoints.</p>
+     <ul class="service-features">
+      <li>Logo &amp; Symbol Design</li>
+      <li>Brand Style Guides</li>
+      <li>Visual Identity Systems</li>
+      <li>Brand Strategy</li>
+     </ul>
+    </div>
+    <div class="service-card">
+     <div class="service-number">
+      02
+     </div>
+     <svg class="service-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#000000" stroke-width="1.5" /> <line x1="7" y1="8" x2="17" y2="8" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /> <line x1="7" y1="12" x2="13" y2="12" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /> <line x1="7" y1="16" x2="15" y2="16" stroke="#000000" stroke-width="1.5" stroke-linecap="round" />
+     </svg>
+     <h3 class="service-title">UI/UX Design</h3>
+     <p class="service-description">User-centered interface design for web and mobile applications with focus on intuitive navigation, seamless user experiences, and conversion-optimized layouts.</p>
+     <ul class="service-features">
+      <li>Website Design</li>
+      <li>Mobile App Interfaces</li>
+      <li>User Flow Optimization</li>
+      <li>Prototyping &amp; Testing</li>
+     </ul>
+    </div>
+    <div class="service-card">
+     <div class="service-number">
+      03
+     </div>
+     <svg class="service-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 3C23 3 20.5 5.5 18 5.5C13.5 5.5 11 2 6.5 2C4 2 1 4 1 4" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /> <path d="M1 4V22L6 19L12 22L18 19L23 22V4" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+     </svg>
+     <h3 class="service-title">Social Media Management</h3>
+     <p class="service-description">Strategic content creation, scheduling, and community management across platforms. Building engaging narratives that drive real audience growth and interaction.</p>
+     <ul class="service-features">
+      <li>Content Strategy</li>
+      <li>Post Design &amp; Scheduling</li>
+      <li>Community Engagement</li>
+      <li>Performance Analytics</li>
+     </ul>
+    </div>
+    <div class="service-card">
+     <div class="service-number">
+      04
+     </div>
+     <svg class="service-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> <path d="M14 2V8H20" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> <line x1="8" y1="13" x2="16" y2="13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /> <line x1="8" y1="17" x2="16" y2="17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" />
+     </svg>
+     <h3 class="service-title">Content Creation</h3>
+     <p class="service-description">Professional design for social media posts, reels, carousels, and stories. Creating scroll-stopping visual content that aligns with your brand and resonates with your audience.</p>
+     <ul class="service-features">
+      <li>Social Media Graphics</li>
+      <li>Video &amp; Motion Graphics</li>
+      <li>Infographics &amp; Carousels</li>
+      <li>Template Systems</li>
+     </ul>
+    </div>
+    <div class="service-card">
+     <div class="service-number">
+      05
+     </div>
+     <svg class="service-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="1.5" /> <circle cx="12" cy="12" r="6" stroke="#000000" stroke-width="1.5" /> <circle cx="12" cy="12" r="2" fill="#000000" /> <line x1="12" y1="2" x2="12" y2="6" stroke="#000000" stroke-width="1.5" /> <line x1="12" y1="18" x2="12" y2="22" stroke="#000000" stroke-width="1.5" /> <line x1="22" y1="12" x2="18" y2="12" stroke="#000000" stroke-width="1.5" /> <line x1="6" y1="12" x2="2" y2="12" stroke="#000000" stroke-width="1.5" />
+     </svg>
+     <h3 class="service-title">Creative Direction</h3>
+     <p class="service-description">Strategic oversight of creative projects from concept to execution. Ensuring visual consistency, brand alignment, and impactful storytelling across all marketing initiatives.</p>
+     <ul class="service-features">
+      <li>Campaign Concepts</li>
+      <li>Visual Strategy</li>
+      <li>Art Direction</li>
+      <li>Brand Positioning</li>
+     </ul>
+    </div>
+    <div class="service-card">
+     <div class="service-number">
+      06
+     </div>
+     <svg class="service-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#000000" stroke-width="1.5" stroke-linejoin="round" /> <path d="M2 17L12 22L22 17" stroke="#000000" stroke-width="1.5" stroke-linejoin="round" /> <path d="M2 12L12 17L22 12" stroke="#000000" stroke-width="1.5" stroke-linejoin="round" />
+     </svg>
+     <h3 class="service-title">Print &amp; Digital Design</h3>
+     <p class="service-description">Versatile design solutions for both print and digital mediums including brochures, packaging, presentations, banners, and event materials with precise attention to detail.</p>
+     <ul class="service-features">
+      <li>Marketing Collateral</li>
+      <li>Presentation Design</li>
+      <li>Event Materials</li>
+      <li>Packaging Design</li>
+     </ul>
+    </div>
+   </div>
+  </section><!-- Project Modal -->
+  <div class="project-modal" id="projectModal">
+   <div class="project-modal-content"><button class="project-modal-close" id="modalClose">
+     <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke-width="2" stroke-linecap="round" />
+     </svg></button> <img class="project-modal-image" id="modalImage" src="" alt="">
+    <div class="project-modal-body">
+     <h3 class="project-modal-title" id="modalTitle"></h3>
+     <p class="project-modal-description" id="modalDescription"></p>
+    </div>
+   </div>
+  </div><!-- Projects Section -->
+  <section class="section projects-section" id="projects">
+   <div class="section-header">
+    <h2 class="section-heading">Projects</h2>
+    <p class="section-subtitle">Selected works showcasing branding, UI/UX, and social media design excellence.</p>
+   </div>
+   <div class="projects-grid">
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/MgCe3Ga.jpeg" alt="Brand Identity Design Project" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Brand Identity Project</h3>
+      <p class="project-description">Complete visual identity system with logo, color palette, and brand guidelines.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/fmCo2oO.jpeg" alt="Mobile App UI Design" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Mobile App UI Design</h3>
+      <p class="project-description">User-centric interface design for mobile application with modern aesthetics.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/yfxgi5A.jpeg" alt="Social Media Campaign" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Social Media Campaign</h3>
+      <p class="project-description">Strategic content creation and visual storytelling for social platforms.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/j5OkacI.jpeg" alt="E-commerce Website Design" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">E-commerce Website</h3>
+      <p class="project-description">Full website design with shopping cart, product pages, and checkout flow.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/aU97J7t.jpeg" alt="Instagram Content Design" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Instagram Content Design</h3>
+      <p class="project-description">Cohesive social media templates and content strategy for brand consistency.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/xKTzG9Z.jpeg" alt="Medical Congress Branding" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Medical Congress Branding</h3>
+      <p class="project-description">Complete event identity with presentations, brochures, and signage design.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/N8hZNn7.jpeg" alt="Landing Page Design" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Landing Page Design</h3>
+      <p class="project-description">Conversion-optimized landing page for product launch campaign.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/qBUEeOU.jpeg" alt="Restaurant Branding" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Restaurant Branding</h3>
+      <p class="project-description">Menu design, brand identity, and signage for local restaurant chain.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/KmbJDXM.jpeg" alt="Packaging Design" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Packaging Design</h3>
+      <p class="project-description">Product packaging and label design for consumer goods brand.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/zSlBj1Z.jpeg" alt="Startup Brand Launch" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Startup Brand Launch</h3>
+      <p class="project-description">Full brand strategy, visual identity, and digital presence for tech startup.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/z1dkkej.jpeg" alt="Creative Design Project" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Creative Design Project</h3>
+      <p class="project-description">Innovative design solution combining form and function.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/ESrxw86.jpeg" alt="Digital Marketing Campaign" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Digital Marketing Campaign</h3>
+      <p class="project-description">Multi-platform campaign with high engagement and conversion rates.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/Mdi6Dez.jpeg" alt="Visual Identity System" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Visual Identity System</h3>
+      <p class="project-description">Comprehensive brand system with guidelines and applications.</p>
+     </div>
+    </div>
+    <div class="project-card">
+     <div class="project-image"><img src="https://i.imgur.com/ZfI1Ju4.jpeg" alt="Strategic Design Work" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+     </div>
+     <div class="project-content">
+      <h3 class="project-title">Strategic Design Work</h3>
+      <p class="project-description">Design solution focused on user experience and business goals.</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonials Section -->
+  <section class="section" id="testimonials">
+   <div class="section-header">
+    <h2 class="section-heading">What Clients Say</h2>
+    <p class="section-subtitle">Real feedback from clients who trusted me with their brand and digital presence.</p>
+   </div>
+   <div class="testimonials-grid">
+    <div class="testimonial-card">
+     <div class="testimonial-quote">
+      "
+     </div>
+     <p class="testimonial-text">Working with Mansoura was a game-changer for our brand. The attention to detail and strategic thinking behind every design decision was impressive. Our engagement rates increased by 40% after implementing the new social media system.</p>
+    </div>
+    <div class="testimonial-card">
+     <div class="testimonial-quote">
+      "
+     </div>
+     <p class="testimonial-text">I needed a complete rebrand and Mansoura delivered beyond expectations. The process was smooth, communication was clear, and the final identity perfectly captured our vision. The brand guidelines are so comprehensive that our entire team can maintain consistency effortlessly.</p>
+    </div>
+    <div class="testimonial-card">
+     <div class="testimonial-quote">
+      "
+     </div>
+     <p class="testimonial-text">The UI/UX designs for our mobile app were intuitive and beautiful. Mansoura understood our users' needs and translated them into a seamless experience. Our user retention improved significantly, and we received countless compliments on the interface design.</p>
+    </div>
+   </div>
+  </section><!-- Pricing Section -->
+  <section class="section" id="pricing">
+   <div class="section-header">
+    <h2 class="section-heading">What I Can Do For You</h2>
+    <p class="section-subtitle">Flexible packages designed to match your needs and budget, from startups to established brands.</p>
+   </div>
+   <div class="pricing-grid">
+    <div class="pricing-card">
+     <div class="pricing-badge">
+      Starter
+     </div>
+     <h3 class="pricing-title">Starter Brand Identity</h3>
+     <div class="pricing-price">
+      $200
+     </div>
+     <ul class="pricing-features">
+      <li>Logo + color + typography system</li>
+      <li>Social media starter kit</li>
+      <li>Mini brand guide</li>
+      <li>Modern, clean identity for new brands</li>
+     </ul><button class="pricing-button" onclick="togglePricingDetails(this)">Learn More</button>
+     <div class="pricing-details">
+      <ul class="pricing-features">
+       <li>Clean, modern visual identity crafted from scratch</li>
+       <li>Professional logo + scalable mark variations</li>
+       <li>Color palette engineered for harmony &amp; brand psychology</li>
+       <li>Typography system using premium, legible, timeless fonts</li>
+       <li>Social media starter kit (profile + cover + 3 templates)</li>
+       <li>Mini brand guide (usage rules, spacing, tone, dos &amp; don'ts)</li>
+       <li>Perfect for new brands wanting a strong, trustworthy look</li>
+      </ul>
+     </div>
+    </div>
+    <div class="pricing-card featured">
+     <div class="pricing-badge">
+      Most Popular
+     </div>
+     <h3 class="pricing-title">Content Creation + Visual Identity</h3>
+     <div class="pricing-price">
+      $500
+     </div>
+     <ul class="pricing-features">
+      <li>Full visual identity</li>
+      <li>15 posts (Reels + Carousels)</li>
+      <li>20 stories</li>
+      <li>Brand-consistent, high-impact content</li>
+     </ul><button class="pricing-button" onclick="togglePricingDetails(this)">Learn More</button>
+     <div class="pricing-details">
+      <ul class="pricing-features">
+       <li>Complete brand design system (logo, colors, fonts, rules)</li>
+       <li>15 high-impact posts (mix of Reels + Carousels)</li>
+       <li>20 animated/static story designs optimized for conversion</li>
+       <li>Brand-consistent templates for future use</li>
+       <li>Storytelling-driven copywriting included</li>
+       <li>Insight-based content planning (what works for your niche)</li>
+       <li>Strong visual direction to unify your full social presence</li>
+       <li>Ideal for businesses who want both identity + content flawlessly aligned</li>
+      </ul>
+     </div>
+    </div>
+    <div class="pricing-card">
+     <div class="pricing-badge">
+      Premium
+     </div>
+     <h3 class="pricing-title">Social Media Growth System</h3>
+     <div class="pricing-price">
+      $750
+     </div>
+     <ul class="pricing-features">
+      <li>Full brand identity + content system</li>
+      <li>Social media management + posting</li>
+      <li>Community management</li>
+      <li>Monthly insights &amp; growth strategy</li>
+     </ul><button class="pricing-button" onclick="togglePricingDetails(this)">Learn More</button>
+     <div class="pricing-details">
+      <ul class="pricing-features">
+       <li>Full visual identity design (advanced + polished)</li>
+       <li>Complete monthly content system: strategy, posting calendar</li>
+       <li>15 posts (Reels + Carousels)</li>
+       <li>20 stories</li>
+       <li>Page management: scheduling, optimization, insight tracking</li>
+       <li>Community management: responses, engagement, comment handling</li>
+       <li>Performance reports + growth recommendations</li>
+       <li>Brand tone-of-voice setup + storytelling framework</li>
+       <li>A full done-for-you growth machine for brands that want real results</li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Section -->
+  <section class="section contact-section" id="contact">
+   <div class="section-header">
+    <h2 class="section-heading" id="contactHeading">Let's Work Together</h2>
+    <p class="section-subtitle">Ready to elevate your brand? Let's start a conversation about your project.</p>
+   </div>
+   <div class="contact-wrapper">
+    <div class="contact-info-section">
+     <h3 class="contact-info-title">Let's Talk</h3>
+     <p class="contact-info-description">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the channels below.</p>
+     <div class="contact-info-list">
+      <div class="contact-info-item">
+       <div class="contact-info-icon">
+        <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21C16.4183 21 20 17.4183 20 13C20 8.58172 16.4183 5 12 5C7.58172 5 4 8.58172 4 13C4 17.4183 7.58172 21 12 21Z" stroke="#000000" stroke-width="2" /> <path d="M12 9V13L15 15" stroke="#000000" stroke-width="2" stroke-linecap="round" /> <path d="M12 3V5" stroke="#000000" stroke-width="2" stroke-linecap="round" />
+        </svg>
+       </div>
+       <div class="contact-info-content">
+        <div class="contact-info-label">
+         Address
+        </div>
+        <div class="contact-info-value">
+         Sidi Bel Abbes, Algeria
+        </div>
+       </div>
+      </div>
+      <div class="contact-info-item">
+       <div class="contact-info-icon">
+        <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" /> <path d="M3 7L12 13L21 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <div class="contact-info-content">
+        <div class="contact-info-label">
+         Email
+        </div>
+        <div class="contact-info-value">
+         Oussamamansoura1604@gmail.com
+        </div>
+       </div>
+      </div>
+      <div class="contact-info-item">
+       <div class="contact-info-icon">
+        <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92V19.92C22 20.49 21.54 20.95 20.97 20.92C10.05 20.36 3.62 13.94 3.06 3.03C3.03 2.45 3.48 2 4.06 2H7.06C7.59 2 8.04 2.42 8.07 2.94C8.18 4.51 8.47 6.03 8.93 7.47C9.04 7.8 8.97 8.17 8.74 8.43L7.09 10.51C8.51 13.36 10.64 15.49 13.49 16.91L15.57 15.26C15.84 15.03 16.21 14.96 16.53 15.07C17.97 15.53 19.49 15.82 21.06 15.93C21.58 15.96 22 16.41 22 16.92Z" stroke="#000000" stroke-width="2" />
+        </svg>
+       </div>
+       <div class="contact-info-content">
+        <div class="contact-info-label">
+         Phone
+        </div>
+        <div class="contact-info-value">
+         +213 697 447 483
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="contact-content">
+     <form class="contact-form" id="contactForm">
+      <div class="success-message" id="successMessage">
+       Message sent successfully! Thank you for reaching out.
+      </div>
+      <div class="form-group"><label for="name" class="form-label">Name</label> <input type="text" id="name" class="form-input" required>
+      </div>
+      <div class="form-group"><label for="email" class="form-label">Email</label> <input type="email" id="email" class="form-input" required>
+      </div>
+      <div class="form-group"><label for="message" class="form-label">Message</label> <textarea id="message" class="form-textarea" required></textarea>
+      </div><button type="submit" class="form-button" id="contactButton">Send Message</button>
+     </form>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="footer">
+   <div class="footer-content">
+    <div class="footer-grid">
+     <div class="footer-column">
+      <h3>About Me</h3>
+      <p>Multidisciplinary designer blending creativity, strategy, and research-driven thinking to create impactful digital experiences.</p>
+     </div>
+     <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+       <li><a href="#about" class="footer-link">About</a></li>
+       <li><a href="#skills" class="footer-link">Skills</a></li>
+       <li><a href="#experience" class="footer-link">Experience</a></li>
+       <li><a href="#projects" class="footer-link">Projects</a></li>
+       <li><a href="#contact" class="footer-link">Contact</a></li>
+      </ul>
+     </div>
+     <div class="footer-column">
+      <h3>Expertise</h3>
+      <ul>
+       <li>Brand Identity Design</li>
+       <li>UI/UX Design</li>
+       <li>Social Media Strategy</li>
+       <li>Digital Marketing</li>
+       <li>Creative Direction</li>
+      </ul>
+     </div>
+     <div class="footer-column">
+      <h3>Contact</h3>
+      <p>Ready to collaborate on your next project? Let's create something amazing together.</p>
+     </div>
+    </div>
+    <div class="footer-bottom">
+     <p>© 2024 Mansoura Oussama. All rights reserved.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+    // Configuration
+    const defaultConfig = {
+      hero_title: 'Mansoura Oussama',
+      hero_subtitle: 'Multidisciplinary Designer & Digital Strategist',
+      hero_description: 'I design brands, craft interfaces, and build digital experiences that blend creativity, clarity, and strategy. With a strong background in design, marketing, and scientific research, I create work that is visually sharp, user-focused, and built with intention.',
+      cta_primary: 'View My Work',
+      cta_secondary: 'Contact Me',
+      about_heading: 'About Me',
+      contact_heading: "Let's Work Together",
+      contact_button: 'Send Message',
+      background_color: '#000000',
+      surface_color: '#ffffff',
+      text_color: '#000000',
+      primary_action_color: '#000000',
+      secondary_action_color: '#333333',
+      font_family: 'Poppins',
+      font_size: 16
+    };
+
+    // Element SDK Implementation
+    async function onConfigChange(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      // Apply font family
+      document.body.style.fontFamily = `'${customFont}', sans-serif`;
+
+      // Apply font sizes proportionally
+      document.querySelector('.hero-title').style.fontSize = `${baseSize * 2.5}px`;
+      document.querySelector('.hero-subtitle').style.fontSize = `${baseSize * 1.5}px`;
+      document.querySelector('.hero-description').style.fontSize = `${baseSize * 1.1}px`;
+      document.querySelectorAll('.section-heading').forEach(el => {
+        el.style.fontSize = `${baseSize * 2}px`;
+      });
+      document.body.style.fontSize = `${baseSize}px`;
+
+      // Apply colors
+      const hero = document.querySelector('.hero');
+      hero.style.background = surfaceColor;
+
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.style.background = primaryColor;
+        btn.style.color = surfaceColor;
+      });
+
+      document.querySelectorAll('.btn-secondary').forEach(btn => {
+        btn.style.borderColor = primaryColor;
+        btn.style.color = textColor;
+      });
+
+      document.querySelectorAll('.skill-card, .service-card, .testimonial-card, .project-card, .contact-form').forEach(card => {
+        card.style.background = surfaceColor;
+        card.style.borderColor = primaryColor;
+      });
+
+      document.body.style.color = textColor;
+      document.querySelectorAll('.section-heading, .experience-title, .skill-title, .service-title, .project-title').forEach(el => {
+        el.style.color = textColor;
+      });
+
+      document.querySelectorAll('.section-heading').forEach(heading => {
+        const style = document.createElement('style');
+        style.textContent = `.section-heading::after { background: ${primaryColor} !important; }`;
+        document.head.appendChild(style);
+      });
+
+      document.querySelector('.form-button').style.background = primaryColor;
+
+      document.querySelectorAll('.experience-item::before').forEach(el => {
+        el.style.background = primaryColor;
+        el.style.boxShadow = `0 0 0 3px ${primaryColor}`;
+      });
+
+      document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+        input.style.borderColor = primaryColor;
+      });
+
+      document.querySelectorAll('.project-image').forEach(img => {
+        img.style.background = primaryColor;
+      });
+
+      document.querySelector('.hero-photo').style.borderColor = primaryColor;
+
+      // Update text content
+      document.getElementById('heroTitle').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('heroSubtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('heroDescription').textContent = config.hero_description || defaultConfig.hero_description;
+      document.getElementById('ctaPrimary').textContent = config.cta_primary || defaultConfig.cta_primary;
+      document.getElementById('ctaSecondary').textContent = config.cta_secondary || defaultConfig.cta_secondary;
+      document.getElementById('aboutHeading').textContent = config.about_heading || defaultConfig.about_heading;
+      document.getElementById('contactHeading').textContent = config.contact_heading || defaultConfig.contact_heading;
+      document.getElementById('contactButton').textContent = config.contact_button || defaultConfig.contact_button;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['hero_description', config.hero_description || defaultConfig.hero_description],
+        ['cta_primary', config.cta_primary || defaultConfig.cta_primary],
+        ['cta_secondary', config.cta_secondary || defaultConfig.cta_secondary],
+        ['about_heading', config.about_heading || defaultConfig.about_heading],
+        ['contact_heading', config.contact_heading || defaultConfig.contact_heading],
+        ['contact_button', config.contact_button || defaultConfig.contact_button]
+      ]);
+    }
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Mobile Navigation Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const targetPosition = target.offsetTop - offset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Navbar scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Contact Form Handling
+    const contactForm = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+    const submitButton = document.getElementById('contactButton');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      setTimeout(() => {
+        successMessage.classList.add('show');
+        contactForm.reset();
+        submitButton.disabled = false;
+        
+        const currentButtonText = window.elementSdk && window.elementSdk.config.contact_button 
+          ? window.elementSdk.config.contact_button 
+          : defaultConfig.contact_button;
+        submitButton.textContent = currentButtonText;
+
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+        }, 5000);
+      }, 1000);
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .experience-item, .project-card, .testimonial-card, .stat-card, .pricing-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Skill bars animation
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.skill-item').forEach(el => {
+      skillObserver.observe(el);
+    });
+
+    // Project Modal Functionality
+    const projectModal = document.getElementById('projectModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+
+    // Add click event to all project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('.project-image img');
+        const title = card.querySelector('.project-title').textContent;
+        const description = card.querySelector('.project-description').textContent;
+
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+
+        projectModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close modal when clicking close button
+    modalClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      projectModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close modal when clicking outside the modal content
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        projectModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+        projectModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Toggle pricing details
+    function togglePricingDetails(button) {
+      const card = button.closest('.pricing-card');
+      const details = card.querySelector('.pricing-details');
+      
+      // Close all other open details first
+      document.querySelectorAll('.pricing-details.active').forEach(openDetail => {
+        if (openDetail !== details) {
+          openDetail.classList.remove('active');
+          const otherButton = openDetail.parentElement.querySelector('.pricing-button');
+          otherButton.textContent = 'Learn More';
+        }
+      });
+      
+      // Toggle the clicked card
+      if (details.classList.contains('active')) {
+        details.classList.remove('active');
+        button.textContent = 'Learn More';
+      } else {
+        details.classList.add('active');
+        button.textContent = 'Show Less';
+      }
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a31f3dde7c34e1f',t:'MTc2MzkxNDM5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
