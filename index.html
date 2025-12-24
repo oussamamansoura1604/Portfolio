@@ -1662,11 +1662,49 @@
         padding: 1.5rem;
       }
     }
+   /* ===== PROJECT IMAGE MODAL ===== */
+.project-image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.project-image-modal.active {
+  display: flex;
+}
+
+.modal-preview-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+}
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
+ <!-- PROJECT IMAGE MODAL -->
+<div class="project-image-modal" id="projectImageModal" aria-hidden="true">
+  <button class="modal-close-btn" aria-label="Close preview">&times;</button>
+  <img class="modal-preview-image" src="" alt="Project preview">
+</div>
  <body><!-- Navigation -->
   <nav class="nav" id="nav">
    <div class="nav-container"><a href="#hero" class="nav-logo">MO</a>
@@ -2861,8 +2899,43 @@
         button.textContent = 'Show Less';
       }
     }
+   (function () {
+  const modal = document.getElementById("projectImageModal");
+  const modalImg = modal.querySelector(".modal-preview-image");
+  const closeBtn = modal.querySelector(".modal-close-btn");
+
+  document.addEventListener("click", function (e) {
+    const projectImage = e.target.closest("#projects img");
+    if (!projectImage) return;
+
+    modalImg.src = projectImage.src;
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+
+  function closeModal() {
+    modal.classList.remove("active");
+    modalImg.src = "";
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      closeModal();
+    }
+  });
+})();
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a31f3dde7c34e1f',t:'MTc2MzkxNDM5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>
+
 
